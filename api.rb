@@ -1,4 +1,5 @@
 require 'net/http'
+require_relative 'cache'
 
 class TBA_API
   attr_reader :organization, :app_identifier, :version
@@ -6,6 +7,7 @@ class TBA_API
   @@api_base_url = "https://www.thebluealliance.com/api/v2/"
   def initialize( organization, app_identifier, version )
     @organization, @app_identifier, @version = organization, app_identifier, version
+    @cache = Cache.new
   end
 
   def get_team_list ( page = 1 )
@@ -100,9 +102,13 @@ class TBA_API
     get_api_resource "#{@@api_base_url}district/#{district_key}/#{year}/rankings"
   end
 
-  def get_api_resource ( uri )
-    uri = URI( uri )
+  def get_api_resource ( original_url )
 
+    if @cache.exists( original_url )
+      return @cache.get( original_url )
+    end
+
+    uri = URI( original_url )
     request = Net::HTTP::Get.new( uri )
     request['X-TBA-App-Id'] = get_api_identifier
 
@@ -113,6 +119,7 @@ class TBA_API
 
     case resource
     when Net::HTTPSuccess, Net::HTTPRedirection
+      @cache.set( original_url, resource.body )
       resource.body
     else
       resource.value
