@@ -51,7 +51,7 @@ class TBA_API
     get_api_resource "#{@@api_base_url}team/#{team_key}/event/#{event_key}/awards"
   end
 
-  def get_team_event_awards ( team_key, event_key )
+  def get_team_event_matches ( team_key, event_key )
     get_api_resource "#{@@api_base_url}team/#{team_key}/event/#{event_key}/matches"
   end
 
