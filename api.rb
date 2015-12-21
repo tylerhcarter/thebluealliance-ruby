@@ -110,7 +110,7 @@ class TBA_API
 
     uri = URI( original_url )
     request = Net::HTTP::Get.new( uri )
-    request['X-TBA-App-Id'] = get_api_identifier
+    request['X-TBA-App-Id'] = "#{@organization}:#{@app_identifier}:#{@version}"
 
     resource = Net::HTTP.start( uri.hostname, uri.port,
       :use_ssl => uri.scheme == 'https' ) { |http|
@@ -124,10 +124,6 @@ class TBA_API
     else
       resource.value
     end
-  end
-
-  def get_api_identifier
-    "#{@organization}:#{@app_identifier}:#{@version}"
   end
 
 end
