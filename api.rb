@@ -451,7 +451,7 @@ class TBA_API
     case resource
     when Net::HTTPSuccess, Net::HTTPRedirection
       data = JSON.parse( resource.body )
-      @cache.set( original_url, data )
+      @cache.set( url, data )
       return data
     else
       resource.value
