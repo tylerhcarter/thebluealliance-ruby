@@ -131,6 +131,3 @@ class TBA_API
   end
 
 end
-
-api = TBA_API.new( "frc3128", "command-line", "v01" );
-puts api.get_team "frc3128"
