@@ -1,3 +1,4 @@
+require 'json'
 require 'net/http'
 require_relative 'cache'
 
@@ -103,12 +104,13 @@ class TBA_API
   end
 
   def get_api_resource ( original_url )
+  def get_api_resource ( url )
 
-    if @cache.exists( original_url )
-      return @cache.get( original_url )
+    if @cache.exists( url )
+      return @cache.get( url )
     end
 
-    uri = URI( original_url )
+    uri = URI( url )
     request = Net::HTTP::Get.new( uri )
     request['X-TBA-App-Id'] = "#{@organization}:#{@app_identifier}:#{@version}"
 
@@ -119,8 +121,9 @@ class TBA_API
 
     case resource
     when Net::HTTPSuccess, Net::HTTPRedirection
-      @cache.set( original_url, resource.body )
-      resource.body
+      data = JSON.parse( resource.body )
+      @cache.set( original_url, data )
+      return data
     else
       resource.value
     end
