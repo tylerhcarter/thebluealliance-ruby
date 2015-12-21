@@ -102,6 +102,10 @@ class TBA_API
     get_api_resource "#{@@api_base_url}district/#{district_key}/#{year}/rankings"
   end
 
+  def get_district_teams ( district_key, year )
+    get_api_resource "#{@@api_base_url}district/#{district_key}/#{year}/teams"
+  end
+
   def get_api_resource ( original_url )
 
     if @cache.exists( original_url )
