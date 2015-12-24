@@ -433,9 +433,9 @@ class TBA_API
   #
   # Examples
   #
-  #   events = get_district_teams( 'ne', '2014' )
-  #   puts events[0]["team_key"]
-  #   # => 'frc195'
+  #   teams = get_district_teams( 'ne', '2014' )
+  #   puts teams[0]["rookie_year"]
+  #   # => '2003'
   #
   # Returns an array with hashes of district teams information
   def get_district_teams ( district_key, year )
