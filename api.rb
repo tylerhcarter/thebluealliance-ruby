@@ -424,6 +424,20 @@ class TBA_API
     get_api_resource "#{@@api_base_url}district/#{district_key}/#{year}/rankings"
   end
 
+  # Public: Gets a list of teams participating in a district.
+  #
+  #
+  # district_key - The letter code for the district to get information on.
+  #   Examples: 'ne', 'in', 'mar'
+  # year - The year to get information on.
+  #
+  # Examples
+  #
+  #   events = get_district_teams( 'ne', '2014' )
+  #   puts events[0]["team_key"]
+  #   # => 'frc195'
+  #
+  # Returns an array with hashes of district teams information
   def get_district_teams ( district_key, year )
     get_api_resource "#{@@api_base_url}district/#{district_key}/#{year}/teams"
   end
