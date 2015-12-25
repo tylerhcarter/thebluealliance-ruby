@@ -426,6 +426,7 @@ class TBA_API
 
   # Public: Gets a list of teams participating in a district.
   #
+  # See http://www.thebluealliance.com/apidocs#district-teams-request
   #
   # district_key - The letter code for the district to get information on.
   #   Examples: 'ne', 'in', 'mar'
