@@ -149,6 +149,24 @@ class TBA_API
     get_api_resource "#{@@api_base_url}team/#{team_key}/history/robots"
   end
 
+  # Public: Gets the districts the team has particpated in
+  #
+  # See http://www.thebluealliance.com/apidocs#team-history-districts-request
+  #
+  # team_key - The team number to get information on, prepended with the program
+  #   tag. Example: 'frc3128'
+  #
+  # Examples
+  #
+  #   districts = get_team_history_districts( 'frc1124' )
+  #   puts districts["2016"]
+  #   # => '2016ne'
+  #
+  # Returns an array with hashes of robot information
+  def get_team_history_districts ( team_key )
+    get_api_resource "#{@@api_base_url}team/#{team_key}/history/districts"
+  end
+
   # Public: Gets a list of all events attended by a team during a given year
   #
   # See http://www.thebluealliance.com/apidocs#team-events-request
