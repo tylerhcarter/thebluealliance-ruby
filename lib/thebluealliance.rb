@@ -2,7 +2,7 @@ require 'json'
 require 'net/http'
 require_relative 'cache'
 
-class TBA_API
+class API
   attr_reader :organization, :app_identifier, :version
 
   @@api_base_url = "https://www.thebluealliance.com/api/v2/"
